@@ -14,3 +14,16 @@ spec:
       targetPort: 8080
   selector:
     io.kompose.service: app
+
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: spring-app
+# spec:
+#   type: LoadBalancer
+#   ports:
+#     - port: 8080
+#       targetPort: 8080
+#   selector:
+#     app: spring-app
