@@ -15,8 +15,11 @@ public class UniversidadService {
     private UniversidadRepository repository;
 
     public List<Universidad> listarTodas() {
-        return repository.findAll();
-    }
+    List<Universidad> universidades = repository.findAll();
+    System.out.println("Datos obtenidos de la BD: " + universidades);
+    return universidades;
+}
+
 
     public Optional<Universidad> obtenerPorId(Long id) {
         return repository.findById(id);
