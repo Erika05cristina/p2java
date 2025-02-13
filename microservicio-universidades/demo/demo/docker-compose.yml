@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Servicio de PostgreSQL
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: universidades
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # Servicio de Spring Boot
+  app:
+    build: .
+    container_name: spring_app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/universidades
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: secret
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:
